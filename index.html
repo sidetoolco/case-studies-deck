@@ -6,7 +6,7 @@
     <title>Sidetool - Case Studies</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,434 +15,386 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #000000;
-            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            background-color: #000;
+            line-height: 1.6;
             overflow: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
         .slide-container {
             width: 100vw;
             height: 100vh;
-            position: relative;
         }
 
         .slide {
             width: 100vw;
             height: 100vh;
             display: none;
+            padding: 4rem 6%;
             position: relative;
-            background: #000000;
-            padding: 60px 80px;
         }
 
         .slide.active {
-            display: flex;
-            flex-direction: column;
+            display: block;
         }
 
-        /* Background gradient */
-        .slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .slide-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             height: 100%;
-            display: flex;
-            flex-direction: column;
         }
 
         /* Navigation */
         .navigation {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
+            bottom: 2rem;
+            right: 2rem;
             display: flex;
-            gap: 12px;
+            gap: 0.75rem;
             z-index: 1000;
         }
 
         .nav-button {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+            border: 1px solid #fff;
             color: #fff;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
             cursor: pointer;
             font-size: 14px;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.2s ease;
-            font-weight: 500;
+            font-weight: 600;
+            transition: all 0.2s ease-in-out;
         }
 
         .nav-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: #fff;
+            color: #000;
         }
 
         .slide-number {
             position: fixed;
-            bottom: 40px;
-            left: 40px;
+            bottom: 2rem;
+            left: 2rem;
             color: #666;
-            font-size: 13px;
-            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
             z-index: 1000;
         }
 
-        /* Title slide */
-        .title-slide .slide-content {
+        /* Hero/Title slide */
+        .hero-slide {
+            display: flex;
+            flex-direction: column;
             justify-content: center;
+            text-align: center;
         }
 
-        .year {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 80px;
-            font-weight: 500;
+        .hero-slide h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
         }
 
-        .brand {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
-        }
-
-        .main-title {
-            font-size: 72px;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            max-width: 900px;
-            margin-bottom: 24px;
-        }
-
-        .subtitle {
-            font-size: 20px;
-            color: #999;
-            line-height: 1.6;
+        .hero-slide p {
             max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.125rem;
+            color: #ccc;
         }
 
-        /* Case study layout */
+        .hero-slide .tagline {
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: #999;
+        }
+
+        /* Case study slide */
+        .case-study-slide {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
         .case-header {
-            margin-bottom: 48px;
+            margin-bottom: 3rem;
         }
 
         .case-label {
-            font-size: 12px;
+            font-size: 0.875rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: #666;
-            font-weight: 600;
-            margin-bottom: 16px;
+            color: #999;
+            margin-bottom: 1rem;
         }
 
         .company-name {
-            font-size: 48px;
+            font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .company-icon {
-            font-size: 36px;
         }
 
         .case-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 4rem;
             flex: 1;
-        }
-
-        .left-column {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .right-column {
-            display: flex;
             align-items: center;
-            justify-content: center;
         }
 
-        .headline {
-            font-size: 32px;
-            font-weight: 600;
+        .case-left h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             line-height: 1.3;
-            letter-spacing: -0.02em;
-            margin-bottom: 24px;
-            color: #FFFFFF;
         }
 
-        .description {
-            font-size: 18px;
+        .case-left p {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 2rem;
             line-height: 1.6;
-            color: #999;
-            margin-bottom: 32px;
         }
 
-        .feature-list {
+        .case-left ul {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
         }
 
-        .feature-list li {
-            font-size: 16px;
-            color: #CCC;
-            padding-left: 28px;
+        .case-left li {
+            font-size: 0.9375rem;
+            color: #bbb;
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
             position: relative;
-            line-height: 1.5;
         }
 
-        .feature-list li::before {
-            content: '→';
+        .case-left li::before {
+            content: '•';
             position: absolute;
             left: 0;
-            color: #9333EA;
-            font-weight: 600;
+            color: #9b5cff;
         }
 
         /* Stats card */
         .stats-card {
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(147, 51, 234, 0.05) 100%);
-            border: 1px solid rgba(147, 51, 234, 0.2);
-            border-radius: 20px;
-            padding: 48px;
-            max-width: 500px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
+            background: #111;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            border: 1px solid #222;
         }
 
         .stat-item {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item:last-child {
+            margin-bottom: 0;
         }
 
         .stat-number {
-            font-size: 56px;
+            font-size: 3rem;
             font-weight: 700;
-            color: #9333EA;
+            background: linear-gradient(90deg, #9b5cff, #6a4eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-size: 13px;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             color: #666;
             font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         .stat-detail {
-            font-size: 15px;
+            font-size: 0.875rem;
             color: #999;
-            line-height: 1.5;
         }
 
         /* Results slide */
-        .results-header {
-            margin-bottom: 48px;
+        .results-slide h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
         }
 
-        .results-header h2 {
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
-        }
-
-        .results-subtitle {
-            font-size: 18px;
-            color: #999;
+        .results-slide .subtitle {
+            font-size: 1.125rem;
+            color: #ccc;
+            margin-bottom: 3rem;
         }
 
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 48px;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .metric-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 32px 24px;
+            background: #111;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #222;
             text-align: center;
         }
 
         .metric-box .number {
-            font-size: 48px;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: #9333EA;
+            background: linear-gradient(90deg, #9b5cff, #6a4eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1;
-            margin-bottom: 12px;
+            margin-bottom: 0.75rem;
         }
 
         .metric-box .label {
-            font-size: 12px;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             color: #666;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
         }
 
         .metric-box .detail {
-            font-size: 14px;
+            font-size: 0.875rem;
             color: #999;
-            line-height: 1.5;
         }
 
         /* Additional results */
         .results-additional {
-            background: rgba(147, 51, 234, 0.05);
-            border: 1px solid rgba(147, 51, 234, 0.1);
-            border-radius: 16px;
-            padding: 32px;
+            background: #0a0a0a;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #111;
         }
 
         .results-additional h3 {
-            font-size: 24px;
+            font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 20px;
-            color: #9333EA;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #9b5cff, #6a4eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .result-row {
-            display: flex;
-            align-items: baseline;
-            gap: 12px;
-            margin-bottom: 12px;
-            font-size: 16px;
+            font-size: 0.9375rem;
+            color: #bbb;
+            margin-bottom: 0.75rem;
         }
 
         .result-row .highlight {
-            color: #9333EA;
+            background: linear-gradient(90deg, #9b5cff, #6a4eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 600;
-        }
-
-        .result-row .text {
-            color: #CCC;
         }
 
         /* Summary slide */
         .summary-section {
-            margin-bottom: 40px;
+            margin-bottom: 2.5rem;
         }
 
         .summary-section h3 {
-            font-size: 28px;
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 16px;
-            color: #9333EA;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #9b5cff, #6a4eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .summary-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 1rem;
         }
 
         .summary-stat {
-            font-size: 15px;
-            color: #CCC;
-            line-height: 1.6;
+            font-size: 0.9375rem;
+            color: #bbb;
         }
 
         /* Pricing slide */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 48px;
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .pricing-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            background: #111;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #222;
         }
 
         .pricing-card h3 {
-            font-size: 24px;
+            font-size: 1.25rem;
             font-weight: 600;
-            color: #FFFFFF;
+            margin-bottom: 1rem;
         }
 
-        .pricing-card .description {
-            font-size: 15px;
-            color: #999;
-            margin-bottom: 0;
+        .pricing-card p {
+            font-size: 0.9375rem;
+            color: #bbb;
+            margin-bottom: 1.5rem;
         }
 
         .pricing-card .price {
-            font-size: 20px;
+            font-size: 1.125rem;
             font-weight: 600;
-            color: #9333EA;
-            line-height: 1.4;
+            background: linear-gradient(90deg, #9b5cff, #6a4eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* Closing slide */
-        .closing-content {
+        .closing-slide {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            height: 100%;
+            text-align: center;
         }
 
-        .closing-headline {
-            font-size: 64px;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 32px;
-            max-width: 900px;
+        .closing-slide h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 2rem;
         }
 
-        .closing-tagline {
-            font-size: 32px;
+        .closing-slide .tagline {
+            font-size: 1.5rem;
             color: #666;
-            margin-bottom: 64px;
+            margin-bottom: 3rem;
             font-weight: 500;
         }
 
-        .cta {
-            font-size: 24px;
-            color: #CCC;
+        .closing-slide .cta {
+            font-size: 1.125rem;
+            color: #ccc;
         }
 
-        .cta .email {
-            color: #9333EA;
+        .closing-slide .email {
+            background: linear-gradient(90deg, #9b5cff, #6a4eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 600;
         }
     </style>
@@ -452,54 +404,48 @@
 
     <div class="slide-container">
         <!-- Slide 1: Title -->
-        <div class="slide active title-slide">
-            <div class="slide-content">
-                <div class="year">2025</div>
-                <div class="brand">sidetool</div>
-                <h1 class="main-title">ai agents that drive revenue & efficiency</h1>
-                <p class="subtitle">custom-built ai automations that handle your tasks, hassle-free</p>
+        <div class="slide active">
+            <div class="container hero-slide">
+                <h1>stop talking about ai.<br>start shipping.</h1>
+                <p>no 6-month roadmaps. no vaporware demos. just production-ready ai agents and data platforms that solve your broken slas, data swamps, and manual chaos.</p>
+                <p class="tagline">2025</p>
             </div>
         </div>
 
         <!-- Slide 2: Vana Overview -->
         <div class="slide">
-            <div class="slide-content">
+            <div class="container case-study-slide">
                 <div class="case-header">
                     <div class="case-label">case study</div>
-                    <div class="company-name">
-                        <span class="company-icon">💰</span>
-                        <span>vana</span>
-                    </div>
+                    <div class="company-name">vana</div>
                 </div>
                 <div class="case-content">
-                    <div class="left-column">
-                        <h2 class="headline">ai collections agent that recovers more money at lower cost</h2>
-                        <p class="description">a micro-lending company built an ai agent that handles debt collection calls with 25% better results than human agents while costing 60% less</p>
-                        <ul class="feature-list">
+                    <div class="case-left">
+                        <h2>ai collections agent that recovers 25% more at 60% lower cost</h2>
+                        <p>a micro-lending company deployed an ai agent that handles debt collection calls with better results than human agents while costing significantly less</p>
+                        <ul>
                             <li>handles customer calls across phone, whatsapp, and sms</li>
                             <li>operates 24/7 with human-like conversation quality</li>
                             <li>maintains full regulatory compliance automatically</li>
                             <li>integrates seamlessly with existing crm systems</li>
                         </ul>
                     </div>
-                    <div class="right-column">
+                    <div class="case-right">
                         <div class="stats-card">
-                            <div class="stats-grid">
-                                <div class="stat-item">
-                                    <div class="stat-number">25%</div>
-                                    <div class="stat-label">higher recovery</div>
-                                    <div class="stat-detail">consistently outperforms human agents</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">60%</div>
-                                    <div class="stat-label">cost reduction</div>
-                                    <div class="stat-detail">no training, sick days, or turnover</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">$9m</div>
-                                    <div class="stat-label">month 2 recovery</div>
-                                    <div class="stat-detail">up from $1m in month one</div>
-                                </div>
+                            <div class="stat-item">
+                                <div class="stat-number">25%</div>
+                                <div class="stat-label">higher recovery</div>
+                                <div class="stat-detail">consistently outperforms human agents</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">60%</div>
+                                <div class="stat-label">cost reduction</div>
+                                <div class="stat-detail">no training, sick days, or turnover</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">$9m</div>
+                                <div class="stat-label">month 2 recovery</div>
+                                <div class="stat-detail">up from $1m in month one</div>
                             </div>
                         </div>
                     </div>
@@ -509,11 +455,9 @@
 
         <!-- Slide 3: Vana Results -->
         <div class="slide">
-            <div class="slide-content">
-                <div class="results-header">
-                    <h2>vana results</h2>
-                    <p class="results-subtitle">measurable impact from month one</p>
-                </div>
+            <div class="container results-slide">
+                <h1>vana results</h1>
+                <p class="subtitle">measurable impact from month one</p>
                 <div class="metrics-grid">
                     <div class="metric-box">
                         <div class="number">25%</div>
@@ -533,61 +477,47 @@
                 </div>
                 <div class="results-additional">
                     <h3>exponential growth trajectory</h3>
-                    <div class="result-row">
-                        <span class="highlight">month 1:</span>
-                        <span class="text">$1m recovered</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="highlight">month 2:</span>
-                        <span class="text">$9m recovered</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="highlight">scalability:</span>
-                        <span class="text">infinitely scalable without hiring constraints</span>
-                    </div>
+                    <div class="result-row"><span class="highlight">month 1:</span> $1m recovered</div>
+                    <div class="result-row"><span class="highlight">month 2:</span> $9m recovered</div>
+                    <div class="result-row"><span class="highlight">scalability:</span> infinitely scalable without hiring constraints</div>
                 </div>
             </div>
         </div>
 
         <!-- Slide 4: Sakon Overview -->
         <div class="slide">
-            <div class="slide-content">
+            <div class="container case-study-slide">
                 <div class="case-header">
                     <div class="case-label">case study</div>
-                    <div class="company-name">
-                        <span class="company-icon">📡</span>
-                        <span>sakon</span>
-                    </div>
+                    <div class="company-name">sakon</div>
                 </div>
                 <div class="case-content">
-                    <div class="left-column">
-                        <h2 class="headline">instant answers for complex enterprise telecom questions</h2>
-                        <p class="description">enterprise telecom management company deployed an ai assistant that helps customers navigate complex communications ecosystems 24/7</p>
-                        <ul class="feature-list">
+                    <div class="case-left">
+                        <h2>instant answers for complex enterprise telecom questions</h2>
+                        <p>enterprise telecom management company deployed an ai assistant that helps customers navigate complex communications ecosystems 24/7</p>
+                        <ul>
                             <li>handles live chat support and technical inquiries</li>
                             <li>provides product and platform guidance instantly</li>
                             <li>trained on entire knowledge base and documentation</li>
                             <li>escalates to humans only when truly necessary</li>
                         </ul>
                     </div>
-                    <div class="right-column">
+                    <div class="case-right">
                         <div class="stats-card">
-                            <div class="stats-grid">
-                                <div class="stat-item">
-                                    <div class="stat-number">70%</div>
-                                    <div class="stat-label">fewer tickets</div>
-                                    <div class="stat-detail">ai handles routine inquiries automatically</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">3x</div>
-                                    <div class="stat-label">faster response</div>
-                                    <div class="stat-detail">from 15 minutes to 30 seconds</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">90%</div>
-                                    <div class="stat-label">satisfaction</div>
-                                    <div class="stat-detail">customers love instant help</div>
-                                </div>
+                            <div class="stat-item">
+                                <div class="stat-number">70%</div>
+                                <div class="stat-label">fewer tickets</div>
+                                <div class="stat-detail">ai handles routine inquiries automatically</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">3x</div>
+                                <div class="stat-label">faster response</div>
+                                <div class="stat-detail">from 15 minutes to 30 seconds</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">90%</div>
+                                <div class="stat-label">satisfaction</div>
+                                <div class="stat-detail">customers love instant help</div>
                             </div>
                         </div>
                     </div>
@@ -597,11 +527,9 @@
 
         <!-- Slide 5: Sakon Results -->
         <div class="slide">
-            <div class="slide-content">
-                <div class="results-header">
-                    <h2>sakon results</h2>
-                    <p class="results-subtitle">transformed customer support operations</p>
-                </div>
+            <div class="container results-slide">
+                <h1>sakon results</h1>
+                <p class="subtitle">transformed customer support operations</p>
                 <div class="metrics-grid">
                     <div class="metric-box">
                         <div class="number">70%</div>
@@ -621,58 +549,47 @@
                 </div>
                 <div class="results-additional">
                     <h3>operational benefits</h3>
-                    <div class="result-row">
-                        <span class="text">reduced need for 24/7 support staff</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="text">eliminated overtime and after-hours costs</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="text">support team focuses on high-value interactions</span>
-                    </div>
+                    <div class="result-row">reduced need for 24/7 support staff</div>
+                    <div class="result-row">eliminated overtime and after-hours costs</div>
+                    <div class="result-row">support team focuses on high-value interactions</div>
                 </div>
             </div>
         </div>
 
         <!-- Slide 6: McDonald's Overview -->
         <div class="slide">
-            <div class="slide-content">
+            <div class="container case-study-slide">
                 <div class="case-header">
                     <div class="case-label">case study</div>
-                    <div class="company-name">
-                        <span class="company-icon">🍔</span>
-                        <span>mcdonald's</span>
-                    </div>
+                    <div class="company-name">mcdonald's</div>
                 </div>
                 <div class="case-content">
-                    <div class="left-column">
-                        <h2 class="headline">24/7 voice ai for customer orders across all channels</h2>
-                        <p class="description">global fast food chain deployed voice ai that handles thousands of customer orders daily with consistent accuracy and speed</p>
-                        <ul class="feature-list">
+                    <div class="case-left">
+                        <h2>24/7 voice ai for customer orders across all channels</h2>
+                        <p>global fast food chain deployed voice ai that handles thousands of customer orders daily with consistent accuracy and speed</p>
+                        <ul>
                             <li>handles whatsapp, phone calls, and drive-thru orders</li>
                             <li>available 24/7 with no breaks or downtime</li>
                             <li>multi-language support for diverse markets</li>
                             <li>integrates with pos and kitchen display systems</li>
                         </ul>
                     </div>
-                    <div class="right-column">
+                    <div class="case-right">
                         <div class="stats-card">
-                            <div class="stats-grid">
-                                <div class="stat-item">
-                                    <div class="stat-number">24/7</div>
-                                    <div class="stat-label">availability</div>
-                                    <div class="stat-detail">no more closed for orders</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">99.9%</div>
-                                    <div class="stat-label">uptime</div>
-                                    <div class="stat-detail">handles peak rushes flawlessly</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">30%</div>
-                                    <div class="stat-label">cost reduction</div>
-                                    <div class="stat-detail">reduced labor and training costs</div>
-                                </div>
+                            <div class="stat-item">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">availability</div>
+                                <div class="stat-detail">no more closed for orders</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">99.9%</div>
+                                <div class="stat-label">uptime</div>
+                                <div class="stat-detail">handles peak rushes flawlessly</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">30%</div>
+                                <div class="stat-label">cost reduction</div>
+                                <div class="stat-detail">reduced labor and training costs</div>
                             </div>
                         </div>
                     </div>
@@ -682,11 +599,9 @@
 
         <!-- Slide 7: McDonald's Results -->
         <div class="slide">
-            <div class="slide-content">
-                <div class="results-header">
-                    <h2>mcdonald's results</h2>
-                    <p class="results-subtitle">operational excellence at scale</p>
-                </div>
+            <div class="container results-slide">
+                <h1>mcdonald's results</h1>
+                <p class="subtitle">operational excellence at scale</p>
                 <div class="metrics-grid">
                     <div class="metric-box">
                         <div class="number">24/7</div>
@@ -706,29 +621,18 @@
                 </div>
                 <div class="results-additional">
                     <h3>quality improvements</h3>
-                    <div class="result-row">
-                        <span class="highlight">98% order accuracy:</span>
-                        <span class="text">consistent understanding across all orders</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="highlight">40% faster:</span>
-                        <span class="text">reduced average order time</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="highlight">15% higher aov:</span>
-                        <span class="text">upselling increases average order value</span>
-                    </div>
+                    <div class="result-row"><span class="highlight">98% order accuracy:</span> consistent understanding across all orders</div>
+                    <div class="result-row"><span class="highlight">40% faster:</span> reduced average order time</div>
+                    <div class="result-row"><span class="highlight">15% higher aov:</span> upselling increases average order value</div>
                 </div>
             </div>
         </div>
 
         <!-- Slide 8: ROI Summary -->
         <div class="slide">
-            <div class="slide-content">
-                <div class="results-header">
-                    <h2>proven roi across industries</h2>
-                    <p class="results-subtitle">real results from real companies</p>
-                </div>
+            <div class="container results-slide">
+                <h1>proven roi across industries</h1>
+                <p class="subtitle">real results from real companies</p>
                 <div class="summary-section">
                     <h3>vana - micro-lending</h3>
                     <div class="summary-stats">
@@ -761,25 +665,23 @@
 
         <!-- Slide 9: Your Turn -->
         <div class="slide">
-            <div class="slide-content">
-                <div class="results-header">
-                    <h2>your ai agent is waiting</h2>
-                    <p class="results-subtitle">ship production-ready ai in 6-10 weeks — not 6 months</p>
-                </div>
+            <div class="container results-slide">
+                <h1>your ai agent is waiting</h1>
+                <p class="subtitle">ship production-ready ai in 6-10 weeks — not 6 months</p>
                 <div class="pricing-grid">
                     <div class="pricing-card">
                         <h3>conversational ai</h3>
-                        <p class="description">voice & chat agents, crm integration, real-time analytics</p>
-                        <div class="price">$45-60k setup<br/>$3-5k/month</div>
+                        <p>voice & chat agents, crm integration, real-time analytics</p>
+                        <div class="price">$45-60k setup / $3-5k monthly</div>
                     </div>
                     <div class="pricing-card">
                         <h3>data platform</h3>
-                        <p class="description">unified data layer, dashboards, automated workflows</p>
-                        <div class="price">$60-90k setup<br/>$4-6k/month</div>
+                        <p>unified data layer, dashboards, automated workflows</p>
+                        <div class="price">$60-90k setup / $4-6k monthly</div>
                     </div>
                     <div class="pricing-card">
                         <h3>custom solution</h3>
-                        <p class="description">built exactly how you need it, whatever the use case</p>
+                        <p>built exactly how you need it, whatever the use case</p>
                         <div class="price">starting at $20k</div>
                     </div>
                 </div>
@@ -788,9 +690,9 @@
 
         <!-- Slide 10: Closing -->
         <div class="slide">
-            <div class="slide-content closing-content">
-                <h1 class="closing-headline">we bet on grit, creativity, and execution.</h1>
-                <p class="closing-tagline">this is high agency, in action.</p>
+            <div class="container closing-slide">
+                <h1>built by builders.<br>shipped fast or die.</h1>
+                <p class="tagline">no bloat. no bullshit.</p>
                 <p class="cta">book a 15-min intro call or email <span class="email">ed@sidetool.co</span></p>
             </div>
         </div>
