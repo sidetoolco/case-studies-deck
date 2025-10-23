@@ -1,0 +1,19 @@
+# system files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# extracted powerpoint content
+pptx_extracted/
+
+# original files
+*.pptx
+*.pdf
+
+# editor files
+.vscode/
+.idea/
+
+# logs
+*.log

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidetool - Case Studies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/switzer');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Switzer', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #010101;
+            color: #FFFFFF;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            position: relative;
+            background: #010101;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        /* Background decorative elements */
+        .bg-shape {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .bg-shape.circle-1 {
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(120, 80, 229, 0.15) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+        }
+
+        .bg-shape.circle-2 {
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(120, 80, 229, 0.1) 0%, transparent 70%);
+            bottom: -300px;
+            right: -300px;
+        }
+
+        /* Content areas */
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 80px 120px;
+            height: 100%;
+        }
+
+        .case-study-label {
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .company-icon {
+            width: 48px;
+            height: 48px;
+            font-size: 32px;
+        }
+
+        .company-name {
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .headline {
+            font-family: 'Actor', sans-serif;
+            font-size: 45px;
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+            margin-bottom: 32px;
+            max-width: 900px;
+        }
+
+        .description {
+            font-family: 'Actor', sans-serif;
+            font-size: 45px;
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 20px;
+        }
+
+        .bullet-list li {
+            font-family: 'Switzer', sans-serif;
+            font-size: 45px;
+            line-height: 1.95;
+            letter-spacing: -0.01em;
+            padding-left: 48px;
+            position: relative;
+        }
+
+        .bullet-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #FFFFFF;
+        }
+
+        /* Interactive card */
+        .interactive-card {
+            position: absolute;
+            right: 120px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 650px;
+            height: 550px;
+            background: #141C25;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-hint {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: #667799;
+            margin-bottom: 32px;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .stat-box {
+            background: rgba(120, 80, 229, 0.1);
+            border: 1px solid rgba(120, 80, 229, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 700;
+            color: #7850E5;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #99A3AF;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Two column layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 60px;
+        }
+
+        /* Title slide specific */
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 120px;
+        }
+
+        .title-slide .year {
+            font-family: 'Actor', sans-serif;
+            font-size: 30px;
+            margin-bottom: 120px;
+        }
+
+        .title-slide h1 {
+            font-size: 144px;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+            max-width: 800px;
+        }
+
+        .title-slide .brand {
+            font-size: 90px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 16px;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Switzer', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            color: #667799;
+            font-size: 14px;
+            font-family: 'IBM Plex Mono', monospace;
+            z-index: 1000;
+        }
+
+        /* Metrics grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .metric-card {
+            background: rgba(120, 80, 229, 0.1);
+            border: 1px solid rgba(120, 80, 229, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .metric-card .number {
+            font-size: 64px;
+            font-weight: 700;
+            color: #7850E5;
+            margin-bottom: 12px;
+        }
+
+        .metric-card .label {
+            font-size: 16px;
+            color: #99A3AF;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .metric-card .detail {
+            font-size: 16px;
+            color: #CCCCCC;
+            line-height: 1.5;
+        }
+
+        /* Results section */
+        .results-section {
+            margin-top: 60px;
+        }
+
+        .results-section h3 {
+            font-size: 40px;
+            font-weight: 600;
+            color: #7850E5;
+            margin-bottom: 32px;
+        }
+
+        .result-item {
+            margin-bottom: 20px;
+            font-size: 24px;
+            line-height: 1.6;
+        }
+
+        .result-item .highlight {
+            color: #7850E5;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-number" id="slideNumber">1 / 10</div>
+
+    <div class="slide-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="bg-shape circle-1"></div>
+            <div class="bg-shape circle-2"></div>
+            <div class="content title-slide">
+                <div class="year">2025</div>
+                <div class="brand">Sidetool</div>
+                <h1>ai agents that drive revenue & efficiency</h1>
+            </div>
+        </div>
+
+        <!-- Slide 2: Vana Overview -->
+        <div class="slide">
+            <div class="bg-shape circle-1"></div>
+            <div class="bg-shape circle-2"></div>
+            <div class="content">
+                <div class="case-study-label">case study</div>
+                <div class="company-header">
+                    <div class="company-icon">💰</div>
+                    <div class="company-name">vana</div>
+                </div>
+                <div class="headline">handles each call like a human, responds like ai 24/7</div>
+                <div class="description">the intelligent assistant seamlessly integrated into restaurants to handle orders through;</div>
+                <ul class="bullet-list">
+                    <li>whatsapp</li>
+                    <li>phone calls</li>
+                    <li>drive-thru interactions</li>
+                </ul>
+            </div>
+            <div class="interactive-card">
+                <div class="card-hint">/ try it out! click to interact with the prototype</div>
+                <div class="card-content">
+                    <div class="stat-box">
+                        <div class="stat-number">25%</div>
+                        <div class="stat-label">higher recovery rate</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">60%</div>
+                        <div class="stat-label">cost reduction</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">$9m</div>
+                        <div class="stat-label">month 2 recovery</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Vana Results -->
+        <div class="slide">
+            <div class="bg-shape circle-1"></div>
+            <div class="bg-shape circle-2"></div>
+            <div class="content">
+                <div class="case-study-label">vana results</div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="number">25%</div>
+                        <div class="label">higher recovery</div>
+                        <div class="detail">than human agents consistently</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="number">60%</div>
+                        <div class="label">cost reduction</div>
+                        <div class="detail">no training, sick days, or turnover</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="number">∞</div>
+                        <div class="label">scalability</div>
+                        <div class="detail">infinitely scalable without hiring</div>
+                    </div>
+                </div>
+                <div class="results-section">
+                    <h3>exponential growth</h3>
+                    <div class="result-item"><span class="highlight">month 1:</span> $1m recovered</div>
+                    <div class="result-item"><span class="highlight">month 2:</span> $9m recovered</div>
+                    <div class="result-item"><span class="highlight">scalability:</span> infinitely scalable without hiring constraints</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Sakon Overview -->
+        <div class="slide">
+            <div class="bg-shape circle-1"></div>
+            <div class="bg-shape circle-2"></div>
+            <div class="content">
+                <div class="case-study-label">case study</div>
+                <div class="company-header">
+                    <div class="company-icon">📡</div>
+                    <div class="company-name">sakon</div>
+                </div>
+                <div class="headline">instant answers for complex enterprise questions, powered by ai</div>
+                <div class="description">ai-powered chat assistant seamlessly integrated into sakon's platform to help customers navigate their enterprise communications ecosystem through:</div>
+                <ul class="bullet-list">
+                    <li>live chat support</li>
+                    <li>product & platform guidance</li>
+                    <li>technical inquiries</li>
+                    <li>24/7 instant assistance</li>
+                </ul>
+            </div>
+            <div class="interactive-card">
+                <div class="card-hint">/ try it out! click to interact with the prototype</div>
+                <div class="card-content">
+                    <div class="stat-box">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">fewer tickets</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">3x</div>
+                        <div class="stat-label">faster response</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Sakon Results -->
+        <div class="slide">
+            <div class="bg-shape circle-1"></div>
+            <div class="bg-shape circle-2"></div>
+            <div class="content">
+                <div class="case-study-label">sakon results</div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="number">70%</div>
+                        <div class="label">fewer tickets</div>
+                        <div class="detail">ai handles routine inquiries automatically</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="number">3x</div>
+                        <div class="label">faster response</div>
+                        <div class="detail">from 15 minutes to 30 seconds</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="number">90%</div>
+                        <div class="label">satisfaction rate</div>
+                        <div class="detail">customers love instant help</div>
+                    </div>
+                </div>
+                <div class="results-section">
+                    <h3>cost savings</h3>
+                    <div class="result-item">reduced need for 24/7 support staff</div>
+                    <div class="result-item">eliminated overtime costs</div>
+                    <div class="result-item">support team focuses on high-value interactions</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: McDonald's Overview -->
+        <div class="slide">
+            <div class="bg-shape circle-1"></div>
+            <div class="bg-shape circle-2"></div>
+            <div class="content">
+                <div class="case-study-label">case study</div>
+                <div class="company-header">
+                    <div class="company-icon">🍔</div>
+                    <div class="company-name">mcdonald's</div>
+                </div>
+                <div class="headline">handles each call like a human, responds like ai 24/7</div>
+                <div class="description">the intelligent assistant seamlessly integrated into restaurants to handle orders through;</div>
+                <ul class="bullet-list">
+                    <li>whatsapp</li>
+                    <li>phone calls</li>
+                    <li>drive-thru interactions</li>
+                </ul>
+            </div>
+            <div class="interactive-card">
+                <div class="card-hint">/ try it out! click to interact with the prototype</div>
+                <div class="card-content">
+                    <div class="stat-box">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">availability</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">uptime</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">30%</div>
+                        <div class="stat-label">cost reduction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: McDonald's Results -->
+        <div class="slide">
+            <div class="bg-shape circle-1"></div>
+            <div class="bg-shape circle-2"></div>
+            <div class="content">
+                <div class="case-study-label">mcdonald's results</div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="number">24/7</div>
+                        <div class="label">availability</div>
+                        <div class="detail">no more closed for orders</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="number">99.9%</div>
+                        <div class="label">uptime</div>
+                        <div class="detail">handles peak rushes flawlessly</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="number">30%</div>
+                        <div class="label">cost reduction</div>
+                        <div class="detail">reduced labor and training costs</div>
+                    </div>
+                </div>
+                <div class="two-column">
+                    <div class="results-section">
+                        <h3>order accuracy</h3>
+                        <div class="result-item"><span class="highlight">98%</span> consistent understanding across all orders</div>
+                    </div>
+                    <div class="results-section">
+                        <h3>service speed</h3>
+                        <div class="result-item"><span class="highlight">40%</span> faster average order time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: ROI Summary -->
+        <div class="slide">
+            <div class="bg-shape circle-1"></div>
+            <div class="bg-shape circle-2"></div>
+            <div class="content">
+                <h2 style="font-size: 64px; margin-bottom: 60px;">proven roi across industries</h2>
+                <div class="results-section" style="margin-top: 0;">
+                    <h3>vana - micro-lending</h3>
+                    <div class="two-column" style="margin-top: 20px;">
+                        <div>
+                            <div class="result-item">25% higher recovery rate</div>
+                            <div class="result-item">60% cost reduction</div>
+                        </div>
+                        <div>
+                            <div class="result-item">$1m → $9m in 2 months</div>
+                            <div class="result-item">infinitely scalable</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="results-section">
+                    <h3>sakon - enterprise telecom</h3>
+                    <div class="two-column" style="margin-top: 20px;">
+                        <div>
+                            <div class="result-item">70% reduction in support tickets</div>
+                            <div class="result-item">3x faster response time</div>
+                        </div>
+                        <div>
+                            <div class="result-item">90% customer satisfaction</div>
+                            <div class="result-item">significant cost savings</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="results-section">
+                    <h3>mcdonald's - food service</h3>
+                    <div class="two-column" style="margin-top: 20px;">
+                        <div>
+                            <div class="result-item">24/7 availability, 99.9% uptime</div>
+                            <div class="result-item">30% cost reduction</div>
+                        </div>
+                        <div>
+                            <div class="result-item">98% order accuracy</div>
+                            <div class="result-item">40% faster service time</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Your Turn -->
+        <div class="slide">
+            <div class="bg-shape circle-1"></div>
+            <div class="bg-shape circle-2"></div>
+            <div class="content">
+                <h2 style="font-size: 72px; margin-bottom: 32px;">your ai agent is waiting</h2>
+                <p style="font-size: 32px; color: #99A3AF; margin-bottom: 80px;">ship production-ready ai in 6-10 weeks — not 6 months</p>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3 style="font-size: 32px; margin-bottom: 16px; color: #FFFFFF;">conversational ai</h3>
+                        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 24px;">voice & chat agents, crm integration, real-time analytics</p>
+                        <p style="color: #7850E5; font-size: 20px; font-weight: 600;">$45-60k setup<br/>$3-5k/month</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3 style="font-size: 32px; margin-bottom: 16px; color: #FFFFFF;">data platform</h3>
+                        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 24px;">unified data layer, dashboards, automated workflows</p>
+                        <p style="color: #7850E5; font-size: 20px; font-weight: 600;">$60-90k setup<br/>$4-6k/month</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3 style="font-size: 32px; margin-bottom: 16px; color: #FFFFFF;">custom solution</h3>
+                        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 24px;">built exactly how you need it, whatever the use case</p>
+                        <p style="color: #7850E5; font-size: 20px; font-weight: 600;">starting at $20k</p>
+                    </div>
+                </div>
+                <div style="margin-top: 80px; text-align: center;">
+                    <p style="font-size: 24px;">book a 15-min intro call or email <span style="color: #7850E5; font-weight: 600;">ed@sidetool.co</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Closing -->
+        <div class="slide">
+            <div class="bg-shape circle-1"></div>
+            <div class="bg-shape circle-2"></div>
+            <div class="content title-slide">
+                <h1 style="font-size: 120px;">we bet on grit,<br/>creativity, and<br/>execution.</h1>
+                <p style="font-size: 48px; color: #99A3AF; margin-top: 60px;">this is high agency, in action.</p>
+                <div style="margin-top: 100px;">
+                    <p style="font-size: 36px;">let's talk →</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-button" onclick="previousSlide()">← previous</button>
+        <button class="nav-button" onclick="nextSlide()">next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideNumber() {
+            document.getElementById('slideNumber').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateSlideNumber();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        updateSlideNumber();
+    </script>
+</body>
+</html>
