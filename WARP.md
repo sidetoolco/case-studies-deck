@@ -6,8 +6,17 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 this is a static presentation/portfolio repository for sidetool, an ai agent development agency. the repository contains two main components:
 
-1. **root level**: production-ready html presentation (index.html) showcasing sidetool's case studies
+1. **root level**: production-ready html presentation (index.html) - the main sales deck showcasing offerings and case studies
 2. **new_sidetool_website_copy/sidetool-master**: astro-based marketing website with sanity cms integration
+
+## primary focus: presentation deck (index.html)
+
+the main deliverable is a 14-slide html presentation deck used for sales and client meetings. it must:
+- load instantly (single html file, no external dependencies except fonts)
+- work offline
+- be keyboard navigable (arrow keys, spacebar)
+- maintain sidetool brand (black #010101, purple #7850E5)
+- focus on customer problems → solutions → results
 
 ## repository structure
 
@@ -205,42 +214,101 @@ the build script sets `NODE_OPTIONS=--max-old-space-size=6144` due to the large 
 - production: allows crawling (including ai bots: gptbot, chatgpt-user, ccbot)
 - non-production: blocks all crawling
 
-## case studies content
+## presentation slides breakdown
 
-the repository contains detailed case studies for three clients (in `case-studies.md`):
+current deck has 14 slides:
+1. hero - brand and tagline
+2. the problem - 4 pain points with metrics
+3. solution 1 - conversational ai + dashboard
+4. solution 2 - data & operations platform
+5. ai agents catalog - 60+ agents across 16 industries
+6. how it works - 4-step process
+7. case study: vana - ai collections (25% higher recovery, 60% cost reduction, $1m → $9m)
+8. case study: sakon - enterprise ai assistant (70% fewer tickets, 90% satisfaction, 3x faster)
+9. case study: mcdonald's - voice ai (99.9% uptime, 30% cost reduction, 98% accuracy)
+10. budget & timeline - transparent pricing for both offerings
+11. why us - value props and client logos
+12. testimonials - 5 customer reviews
+13. final cta - contact information
 
-1. **vana**: ai collections agent
-   - 25% higher recovery rate
-   - 60% cost reduction
-   - $1m → $9m revenue recovery in 2 months
+## key messaging principles
 
-2. **sakon**: enterprise communications ai assistant
-   - 70% reduction in support tickets
-   - 90% customer satisfaction
-   - 3x faster response time
+**every slide must answer:**
+1. what problem does this solve?
+2. how much is this problem costing you?
+3. how fast can we fix it?
 
-3. **mcdonald's**: 24/7 voice ai for orders
-   - 99.9% uptime
-   - 30% cost reduction
-   - 98% order accuracy
+**messaging framework:**
+problem → solution → results → timeline
 
-this content drives both the presentation deck and website case study pages.
+**avoid:**
+- feature lists without context
+- jargon without explanation
+- vague promises ("improve efficiency")
+
+**use:**
+- specific metrics ("30% of calls go unanswered")
+- dollar amounts ("$100k+ annually")
+- timelines ("6-10 weeks, not 6 months")
+- real customer names and results
 
 ## development workflow
 
-### making content changes
+### presentation deck changes (index.html)
+
+**testing locally:**
+```bash
+# open in browser
+open index.html
+
+# or use python simple server for testing
+python3 -m http.server 8000
+# then visit http://localhost:8000
+```
+
+**editing slides:**
+1. each slide is a `<div class="slide">` element
+2. maintain consistent structure: h2 (section), h1 (title), content
+3. use existing css classes for consistency
+4. test keyboard navigation after changes (arrow keys, spacebar)
+5. verify slide counter is updated if adding/removing slides
+
+**adding new slides:**
+1. copy existing slide structure
+2. add css styles in `<style>` section if needed
+3. update `total-slides` count in slide-number div
+4. place slide in logical flow of story
+5. ensure responsive design works (check @media queries)
+
+**modifying metrics/numbers:**
+- metrics are in `.metric` divs with `.value` and `.label` classes
+- keep values bold and large (2.5rem)
+- labels should be descriptive but concise
+- use purple (#7850E5) for emphasis
+
+**brand consistency:**
+- background: #010101 (black)
+- primary accent: #7850E5 (purple)
+- text: #fff (white), #ccc (secondary), #999 (tertiary)
+- font: inter (google fonts)
+- borders: subtle purple glow on hover
+- cards: gradient backgrounds with purple tint
+
+### astro website changes (new_sidetool_website_copy/sidetool-master)
+
+**making content changes:**
 1. update markdown files in `src/content/` for blog/topics/tools
 2. update sanity cms via `/sanity` studio for case studies, team, etc.
 3. run `npm run dev` to preview changes
 4. run `npm run format` before committing
 
-### adding new components
+**adding new components:**
 1. decide: astro component (static) or react island (interactive)?
 2. place in appropriate feature directory under `src/components/`
 3. ensure typescript types are properly defined
 4. add mixpanel tracking if user interaction is involved
 
-### sanity schema changes
+**sanity schema changes:**
 1. modify schema types in `src/sanity/schemaTypes/`
 2. run `npx sanity@latest schema extract`
 3. run `npx sanity@latest typegen generate`
