@@ -493,6 +493,174 @@
             font-weight: 600;
         }
 
+        /* Agents catalog slide */
+        .agents-slide h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #999;
+        }
+
+        .agents-slide h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+            max-height: 65vh;
+            overflow-y: auto;
+        }
+
+        .agent-category {
+            background: rgba(17, 17, 17, 0.5);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            border: 1px solid #222;
+        }
+
+        .agent-category h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #7850E5;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .agent-category ul {
+            list-style: none;
+        }
+
+        .agent-category li {
+            font-size: 0.8125rem;
+            color: #ccc;
+            padding: 0.375rem 0;
+            line-height: 1.4;
+        }
+
+        /* Updated How It Works */
+        .updated-process-slide h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .updated-process-slide .subtitle {
+            font-size: 1.125rem;
+            color: #999;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .updated-process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .updated-process-item {
+            background: rgba(17, 17, 17, 0.5);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #222;
+        }
+
+        .updated-process-item .step-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #7850E5;
+            margin-bottom: 0.75rem;
+        }
+
+        .updated-process-item h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .updated-process-item p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .updated-process-item .cta-link {
+            display: inline-block;
+            color: #7850E5;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid #7850E5;
+            transition: all 0.2s;
+        }
+
+        .updated-process-item .cta-link:hover {
+            color: #9370FF;
+            border-color: #9370FF;
+        }
+
+        /* Testimonials slide */
+        .testimonials-slide h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #999;
+        }
+
+        .testimonials-slide h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .testimonial {
+            background: rgba(17, 17, 17, 0.5);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #222;
+        }
+
+        .testimonial-quote {
+            font-size: 1rem;
+            color: #fff;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .testimonial-author-info h4 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-author-info p {
+            font-size: 0.8125rem;
+            color: #999;
+        }
+
         /* Final slide */
         .final-slide {
             text-align: center;
@@ -549,8 +717,14 @@
             .problem-grid,
             .process-grid,
             .pricing-grid,
-            .why-us-grid {
+            .why-us-grid,
+            .updated-process-grid,
+            .testimonials-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .agents-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .metrics {
@@ -637,25 +811,188 @@
             </div>
         </div>
 
-        <!-- Slide 5: How It Works -->
+        <!-- Slide 5: AI Agents Catalog -->
         <div class="slide">
-            <div class="container process-slide">
-                <h2>How It Works</h2>
-                <div class="process-grid">
-                    <div class="process-item">
-                        <div class="number">1</div>
-                        <h3>Diagnose & scope</h3>
-                        <p>Whether you need chatbots, customer support, sales automation, workflows, data analysis—anything else.</p>
+            <div class="container agents-slide">
+                <h2>Built for Your Needs</h2>
+                <h1>AI Agents We Can Build</h1>
+                <div class="agents-grid">
+                    <div class="agent-category">
+                        <h3>Customer Experience</h3>
+                        <ul>
+                            <li>Inbound Call Agent</li>
+                            <li>Outbound Sales Agent</li>
+                            <li>SMS & Web Chat Agent</li>
+                            <li>24/7 Support Agent</li>
+                        </ul>
                     </div>
-                    <div class="process-item">
-                        <div class="number">2</div>
-                        <h3>Build & integrate</h3>
+                    <div class="agent-category">
+                        <h3>Sales & Leads</h3>
+                        <ul>
+                            <li>Lead Qualification</li>
+                            <li>Appointment Booking</li>
+                            <li>Sales Outreach</li>
+                            <li>Follow-up & Nurture</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>E-commerce</h3>
+                        <ul>
+                            <li>Order Status (WISMO)</li>
+                            <li>Dispatch & Routing</li>
+                            <li>Returns & Exchanges</li>
+                            <li>Carrier Communication</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Home Services</h3>
+                        <ul>
+                            <li>After-Hours Booking</li>
+                            <li>Emergency Call Handler</li>
+                            <li>Service Dispatch</li>
+                            <li>Appointment Reminders</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Financial Services</h3>
+                        <ul>
+                            <li>Account Inquiry</li>
+                            <li>Payment & Billing</li>
+                            <li>Compliance Response</li>
+                            <li>Multi-language Support</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Retail & Hospitality</h3>
+                        <ul>
+                            <li>Reservation & Booking</li>
+                            <li>Concierge Agent</li>
+                            <li>Guest Services</li>
+                            <li>Event Booking</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Healthcare</h3>
+                        <ul>
+                            <li>Appointment Scheduling</li>
+                            <li>Patient Intake</li>
+                            <li>Prescription Refill</li>
+                            <li>Insurance Verification</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Insurance</h3>
+                        <ul>
+                            <li>Claims Status</li>
+                            <li>Quote & Policy</li>
+                            <li>Renewal Reminder</li>
+                            <li>Broker Support</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Property Management</h3>
+                        <ul>
+                            <li>Tenant Inquiry</li>
+                            <li>Maintenance Request</li>
+                            <li>Showing Scheduler</li>
+                            <li>Lease Renewal</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Legal Services</h3>
+                        <ul>
+                            <li>Initial Consultation</li>
+                            <li>Case Intake</li>
+                            <li>Client Communication</li>
+                            <li>Document Request</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Education</h3>
+                        <ul>
+                            <li>Admissions Inquiry</li>
+                            <li>Student Support</li>
+                            <li>Parent Communication</li>
+                            <li>Enrollment Agent</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>HR & Recruiting</h3>
+                        <ul>
+                            <li>Candidate Screening</li>
+                            <li>Interview Scheduling</li>
+                            <li>Employee Inquiry</li>
+                            <li>Onboarding Agent</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Real Estate</h3>
+                        <ul>
+                            <li>Property Inquiry</li>
+                            <li>Showing Booking</li>
+                            <li>Buyer/Seller Qualification</li>
+                            <li>Transaction Update</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Manufacturing</h3>
+                        <ul>
+                            <li>Supplier Communication</li>
+                            <li>Order Status</li>
+                            <li>Vendor Coordination</li>
+                            <li>Production Update</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Construction</h3>
+                        <ul>
+                            <li>Bid Request</li>
+                            <li>Subcontractor Coordination</li>
+                            <li>Project Update</li>
+                            <li>Permit Status</li>
+                        </ul>
+                    </div>
+                    <div class="agent-category">
+                        <h3>Automotive</h3>
+                        <ul>
+                            <li>Service Scheduling</li>
+                            <li>Parts Inquiry</li>
+                            <li>Test Drive Booking</li>
+                            <li>Service Reminder</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: How Sidetool Works -->
+        <div class="slide">
+            <div class="container updated-process-slide">
+                <h1>How Sidetool Works — It's Easy</h1>
+                <div class="subtitle">From conversation to production in 6-10 weeks</div>
+                <div class="updated-process-grid">
+                    <div class="updated-process-item">
+                        <div class="step-number">1</div>
+                        <h3>Let's Talk</h3>
+                        <p>Book a 15-min call with us so we can conduct a sprint to understand your needs and requirements.</p>
+                        <a href="mailto:ed@sidetool.co" class="cta-link">Book a 15-min intro call →</a>
+                    </div>
+                    <div class="updated-process-item">
+                        <div class="step-number">2</div>
+                        <h3>AI Product Discovery</h3>
+                        <p>Whether you need chatbots, customer support, sales automation, workflows, data analysis—anything else. Subscribe and with a simple monthly fee, get unlimited queued automations.</p>
+                    </div>
+                    <div class="updated-process-item">
+                        <div class="step-number">3</div>
+                        <h3>Build a Prototype</h3>
                         <p>We build a functional prototype to validate feasibility of the project, test the hypothesis and gather feedback early in the process.</p>
                     </div>
-                    <div class="process-item">
-                        <div class="number">3</div>
-                        <h3>Scale & Support</h3>
-                        <p>Receive a fast, custom-built AI automations—usually delivered in just weeks and custom manteinance.</p>
+                </div>
+                <div class="updated-process-grid" style="margin-top: 2rem; grid-template-columns: 1fr;">
+                    <div class="updated-process-item" style="text-align: center;">
+                        <div class="step-number">4</div>
+                        <h3>Scale Together</h3>
+                        <p>Receive a fast, custom-built AI automations—usually delivered in just weeks and custom maintenance.</p>
                     </div>
                 </div>
             </div>
@@ -837,7 +1174,62 @@
             </div>
         </div>
 
-        <!-- Slide 11: Final CTA -->
+        <!-- Slide 11: Testimonials -->
+        <div class="slide">
+            <div class="container testimonials-slide">
+                <h2>Social Proof</h2>
+                <h1>What Our Customers Say</h1>
+                <div class="testimonials-grid">
+                    <div class="testimonial">
+                        <p class="testimonial-quote">"The quality of the people and work was highly commendable."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-info">
+                                <h4>Alejandro Palacio</h4>
+                                <p>Software Developer, SRipLaw</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p class="testimonial-quote">"They are all willing to help and understand the concept we have. I love working with them!"</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-info">
+                                <h4>Luisa María Carvajal</h4>
+                                <p>Director of Experience Management, Envoys</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p class="testimonial-quote">"The Sidetool team was helpful, innovative, and patient throughout the process."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-info">
+                                <h4>Kelly Tyra</h4>
+                                <p>Executive Coordinator, FirstGenLaw</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p class="testimonial-quote">"Sidetool stays honest and transparent and does not overbuild. They are efficient and get things done quickly."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-info">
+                                <h4>Brandon Pourmorady</h4>
+                                <p>Founder & CEO, Adhesive Media</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial" style="grid-column: 1 / -1; max-width: 50%; margin: 0 auto;">
+                        <p class="testimonial-quote">"They demonstrate a keen understanding of our requirements and respond promptly to any questions or concerns."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-info">
+                                <h4>Angel Cruzado</h4>
+                                <p>CEO & Founder, Respiris</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Final CTA -->
         <div class="slide">
             <div class="container final-slide">
                 <h1>We bet on grit, creativity, and execution.</h1>
@@ -854,7 +1246,7 @@
         <button class="nav-button" onclick="nextSlide()">Next →</button>
     </div>
     <div class="slide-number">
-        <span id="current-slide">1</span> / <span id="total-slides">11</span>
+        <span id="current-slide">1</span> / <span id="total-slides">14</span>
     </div>
 
     <script>
