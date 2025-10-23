@@ -117,38 +117,95 @@
         }
 
         /* Slide 2: Problem */
+        .problem-slide {
+            text-align: center;
+        }
+
         .problem-slide h2 {
-            font-size: 1.5rem;
+            font-size: 1.125rem;
             font-weight: 600;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         .problem-slide h1 {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .problem-slide h1 em {
+            color: #7850E5;
+            font-style: normal;
+        }
+
+        .problem-slide .problem-subtitle {
+            font-size: 1.25rem;
+            color: #999;
             margin-bottom: 3rem;
-            font-style: italic;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .problem-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
         .problem-item {
-            background: rgba(17, 17, 17, 0.5);
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid #222;
+            background: linear-gradient(135deg, rgba(120, 80, 229, 0.05) 0%, rgba(17, 17, 17, 0.8) 100%);
+            padding: 2.5rem;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(120, 80, 229, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #7850E5 0%, transparent 100%);
+        }
+
+        .problem-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(120, 80, 229, 0.4);
+            box-shadow: 0 8px 32px rgba(120, 80, 229, 0.15);
+        }
+
+        .problem-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        .problem-item h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            text-align: left;
         }
 
         .problem-item p {
-            color: #ccc;
-            font-size: 1rem;
-            line-height: 1.6;
+            color: #bbb;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            text-align: left;
         }
 
         /* Solution slides */
@@ -754,17 +811,26 @@
             <div class="container problem-slide">
                 <h2>The Problem</h2>
                 <h1>Ops and data teams <em>are stuck</em> in broken processes</h1>
+                <p class="problem-subtitle">Manual work, disconnected systems, and broken automations are killing your team's productivity.</p>
                 <div class="problem-grid">
                     <div class="problem-item">
+                        <span class="icon">💬</span>
+                        <h3>Slow Response Times</h3>
                         <p>Support and sales teams waste hours on repetitive tasks and slow response times.</p>
                     </div>
                     <div class="problem-item">
+                        <span class="icon">🔗</span>
+                        <h3>Disconnected Data</h3>
                         <p>Data lives in too many disconnected tools, making it hard to see what's really happening.</p>
                     </div>
                     <div class="problem-item">
+                        <span class="icon">⚠️</span>
+                        <h3>Broken Automations</h3>
                         <p>Integrations are expensive, automations break, and SLAs keep slipping.</p>
                     </div>
                     <div class="problem-item">
+                        <span class="icon">❌</span>
+                        <h3>Empty AI Promises</h3>
                         <p>Most "AI" solutions overpromise and underdeliver.</p>
                     </div>
                 </div>
